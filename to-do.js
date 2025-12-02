@@ -2,12 +2,18 @@ const AddDiv = document.querySelector('#AddDiv')
 const TodoInput = document.querySelector('#todoInput')
 
 AddDiv.addEventListener('click', function()  {
-    // основной div который подсасывает текст из input 
+    // основной todo div 
     const todo = document.createElement('div');
-    let text = TodoInput.value
     todo.className = "todo todoItem"
-    todo.textContent = text;
-    var test
+
+
+
+    // text из input
+    let text = TodoInput.value
+    const todoname = document.createElement('div');
+    todoname.textContent = text
+
+
 
     // кнопка для удаления
     const todoDel = document.createElement('div')
@@ -15,12 +21,13 @@ AddDiv.addEventListener('click', function()  {
     todoDel.textContent = 'Del'
 
     const todoAdd = document.createElement('div')
-    todoAdd.textContent ='1232'
+    todoAdd.textContent ='add'
+    todoAdd.className = "todoAdd"
     todoAdd.addEventListener ('click', () => {
 
         const todoAddDiv = document.createElement('div');
-        todoAddDiv.className = 'todoAddDiv'
-        todo.appendChild(todoAddDiv)
+        todoAddDiv.className = 'todoAddedDiv'
+        todoname.appendChild(todoAddDiv)
 
 
 
@@ -35,7 +42,7 @@ AddDiv.addEventListener('click', function()  {
 
 
     //сборка
-    todo.append(todoAdd, todoDel);
+    todo.append(todoname, todoAdd, todoDel);
     const todoHolder = document.querySelector('#todoHolder')
     todoHolder.append(todo);
 

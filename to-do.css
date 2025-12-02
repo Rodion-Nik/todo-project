@@ -19,14 +19,20 @@ html {
 
 }
 .todoDel {
-    position: relative;
-
+    position: absolute;
+    left: 90%;
 }
-.todoAddDiv {
-    background-color: red;
+.todoAdd{
+    position: absolute;
+    left: 80%;
+}
+
+.todoAddedDiv {
+    background-color: rgb(18, 113, 221);
     align-self: flex-end;
     height: 100px;
-    width: 100px;
+    width: 250px;
+    margin-top: 5px;
 }
 #todoHolder {
     align-items: flex-start;
