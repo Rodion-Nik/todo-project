@@ -1,0 +1,39 @@
+html {
+    background-color: rgb(53, 121, 223);
+
+
+}
+
+.todo {
+    padding: 10px;
+    display: flex;
+    background-color: rgba(65, 65, 65, 0.637);
+    min-width: 250px;
+    height: auto;
+    border-radius: 15px;
+    margin: 20px;
+    justify-content: space-between;
+
+}
+.todoItem {
+
+}
+.todoDel {
+    position: relative;
+
+}
+.todoAddDiv {
+    background-color: red;
+    align-self: flex-end;
+    height: 100px;
+    width: 100px;
+}
+#todoHolder {
+    align-items: flex-start;
+    position: absolute;
+    display: flex;
+    overflow-x: visible;
+    width: auto;
+    height: 90%;
+    background-color: rgba(0, 0, 0, 0.027);
+}
