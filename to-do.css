@@ -6,7 +6,7 @@ html {
 
 .todo {
     position: relative;
-    padding: 10px;
+    padding: 40px 10px 10px 10px;
     display: flex;
     background-color: rgba(65, 65, 65, 0.637);
     min-width: 250px;
@@ -22,12 +22,14 @@ html {
 }
 .todoDel {
     position: absolute;
-    left: 90%;
+    top: 15px;
+    left: 87%;
 
 }
 .todoAdd{
     position: absolute;
-    left: 80%;
+    top: 15px;
+    left: 75%;
 }
 
 .todoAddedDiv {
@@ -37,6 +39,7 @@ html {
     width: 250px;
     margin-top: 5px;
 }
+
 #todoListHolder {
     align-items: flex-start;
     position: absolute;

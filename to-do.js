@@ -2,11 +2,14 @@ const AddDiv = document.querySelector('#AddDiv')
 const TodoInput = document.querySelector('#todoInput')
 const todoListHolder = document.querySelector('#todoListHolder')
 
+//тут значения из ModalWin
 let ModalInputNameValue;
 let ModalInputDateValue; 
 let ModalInputMainInfoValue; 
 
 function ModalWin() {
+    return new Promise(function(resolve) {
+        // Просто структура модального окна
     const modal = document.createElement('div')
     modal.innerHTML = `
     <div class="ModalWinMain">
@@ -24,40 +27,40 @@ function ModalWin() {
         </div>
     </div>`;
     document.body.append(modal);
-
+    // объявление всех элементов
     const ModalInputName = document.querySelector('#ModalInputName')
     const ModalInputDate = document.querySelector('#ModalInputDate')
     const ModalInputMainInfo = document.querySelector('#ModalInputMainInfo')
     const ModalOk = document.querySelector('#ModalOk')
     const ModalClose = document.querySelector('#ModalClose')
 
-
+    //логика кнопки ок а точнее задание значений из input и удаления modal
     ModalOk.addEventListener('click', function() {
-        console.log('123');
-        
         ModalInputNameValue = ModalInputName.value
         ModalInputDateValue = ModalInputDate.value
         ModalInputMainInfoValue = ModalInputMainInfo.value
         if (ModalInputNameValue.trim().length === 0) {
-        ModalInputNameValue = ""
+        ModalInputNameValue = " "
     }  
         if (ModalInputDateValue.trim().length === 0 || 
         ModalInputMainInfoValue.trim().length === 0){
         alert("введите дату и описание")
             } else {
                 modal.remove();
+                resolve();
             }
     })
-
+    //кнопка закрытия modal окна
     ModalClose.addEventListener('click', function() {
         modal.remove()
         ModalInputNameValue = ""
         ModalInputDateValue = ""
         ModalInputMainInfoValue = ""
+        resolve();
     })
-
-    
+    })
 }
+
 
 
 AddDiv.addEventListener('click', function()  {
@@ -65,15 +68,10 @@ AddDiv.addEventListener('click', function()  {
     const todo = document.createElement('div');
     todo.className = "todo todoItem"
 
-
-
     // text из input
     let text = TodoInput.value
     const todoname = document.createElement('div');
     todoname.textContent = text
-
-
-
 
     // кнопка для удаления
     const todoDel = document.createElement('div')
@@ -83,18 +81,32 @@ AddDiv.addEventListener('click', function()  {
     const todoAdd = document.createElement('div')
     todoAdd.textContent ='add'
     todoAdd.className = "todoAdd"
-    todoAdd.addEventListener ('click', function() {
-        ModalWin();
-
+    todoAdd.addEventListener ('click',async function() {
+        await ModalWin();
+        
         const todoAddDiv = document.createElement('div');
-        todoAddDiv.className = 'todoAddedDiv'
+        todoAddDiv.innerHTML = `
+        <div class = 'todoAddedDiv'>
+            <p class="TackName"></p>
+            <p class="TackDate"></p>
+            <p class="TackText"></p>
+        </div>
+        `;
         todoname.appendChild(todoAddDiv)
+        const TackName = todoAddDiv.querySelector('.TackName')
+        const TackDate = todoAddDiv.querySelector('.TackDate')
+        const TackText = todoAddDiv.querySelector('.TackText')
+
+        TackName.textContent = ModalInputNameValue;
+        TackDate.textContent = ModalInputDateValue;
+        TackText.textContent = ModalInputMainInfoValue;
+
+
 
         todoAddDiv.addEventListener ('click', function() {
             todoAddDiv.remove()
         })
-
-
+        
     });
 
 
