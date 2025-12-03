@@ -5,10 +5,12 @@ html {
 }
 
 .todo {
+    position: relative;
     padding: 10px;
     display: flex;
     background-color: rgba(65, 65, 65, 0.637);
     min-width: 250px;
+    min-height: 150px;
     height: auto;
     border-radius: 15px;
     margin: 20px;
@@ -21,6 +23,7 @@ html {
 .todoDel {
     position: absolute;
     left: 90%;
+
 }
 .todoAdd{
     position: absolute;
@@ -34,7 +37,7 @@ html {
     width: 250px;
     margin-top: 5px;
 }
-#todoHolder {
+#todoListHolder {
     align-items: flex-start;
     position: absolute;
     display: flex;
@@ -42,4 +45,14 @@ html {
     width: auto;
     height: 90%;
     background-color: rgba(0, 0, 0, 0.027);
+}
+.ModalWinMain {
+    position: absolute;
+    z-index: 100;
+    left: 50%;
+    top: 20%;
+    background-color: brown;
+    height: 500px;
+    width: 800px;
+    transform: translate(-50%);
 }
