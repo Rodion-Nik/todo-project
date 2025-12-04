@@ -7,13 +7,16 @@ let ModalInputNameValue;
 let ModalInputDateValue; 
 let ModalInputMainInfoValue; 
 
+let modalCheck = true
+
 function ModalWin() {
     return new Promise(function(resolve) {
         // Просто структура модального окна
+    modalCheck = true
     const modal = document.createElement('div')
     modal.innerHTML = `
     <div class="ModalWinMain">
-        <div> 123
+        <div class="ModalInputHolder">
             <p class="ModalText">Введите название (опцеонально)</p> 
             <input id="ModalInputName">
             <p class="ModalText">Введите дату</p> 
@@ -21,7 +24,7 @@ function ModalWin() {
             <p class="ModalText">Описание</p> 
             <input id="ModalInputMainInfo">
         </div>
-        <div>
+        <div class="ModalActionsHolder">
             <div id="ModalOk">Ok</div>
             <div id="ModalClose">Close</div>
         </div>
@@ -53,6 +56,7 @@ function ModalWin() {
     //кнопка закрытия modal окна
     ModalClose.addEventListener('click', function() {
         modal.remove()
+        modalCheck = false
         ModalInputNameValue = ""
         ModalInputDateValue = ""
         ModalInputMainInfoValue = ""
@@ -73,52 +77,76 @@ AddDiv.addEventListener('click', function()  {
     const todoname = document.createElement('div');
     todoname.textContent = text
 
-    // кнопка для удаления
-    const todoDel = document.createElement('div')
-    todoDel.className = 'todoDel todoItem';
-    todoDel.textContent = 'Del'
-
-    const todoAdd = document.createElement('div')
-    todoAdd.textContent ='add'
-    todoAdd.className = "todoAdd"
-    todoAdd.addEventListener ('click',async function() {
-        await ModalWin();
-        
-        const todoAddDiv = document.createElement('div');
-        todoAddDiv.innerHTML = `
-        <div class = 'todoAddedDiv'>
-            <p class="TackName"></p>
-            <p class="TackDate"></p>
-            <p class="TackText"></p>
+    //троеточие в котором можно будет добавить или удалить 
+    let todoSettingCheck = false
+    const todoSetting = document.createElement('div')
+    
+    todoSetting.className = "todoSetting"
+    todoSetting.addEventListener('click', function() {
+        if (todoSettingCheck == false) {
+        const settingList = document.createElement('div')
+        settingList.className = "SettingList"
+        settingList.innerHTML = `
+        <div class="SettingHolder">
+            <div class="todoCreate">Add</div>
+            <div class="todoDelete">Del</div>
         </div>
-        `;
-        todoname.appendChild(todoAddDiv)
-        const TackName = todoAddDiv.querySelector('.TackName')
-        const TackDate = todoAddDiv.querySelector('.TackDate')
-        const TackText = todoAddDiv.querySelector('.TackText')
+        `
+        todoSetting.append(settingList)
+        todoSettingCheck = true
 
-        TackName.textContent = ModalInputNameValue;
-        TackDate.textContent = ModalInputDateValue;
-        TackText.textContent = ModalInputMainInfoValue;
-
-
-
-        todoAddDiv.addEventListener ('click', function() {
-            todoAddDiv.remove()
-        })
         
-    });
+        //берет значения из модалки и создает карточки
+        const todoCreate = todoSetting.querySelector(".todoCreate")
+        todoCreate.addEventListener ('click',async function() {
+            await ModalWin();
+            const todoAddDiv = document.createElement('div');
+            todoAddDiv.innerHTML = `
+            <div class = 'todoAddedDiv'>
+                <p class="TackName"></p>
+                <p class="TackDate"></p>
+                <p class="TackText"></p>
+                <div class="CloseAddedDiv">X</div>
+            </div>
+            `;
+            todoname.appendChild(todoAddDiv)
+            const TackName = todoAddDiv.querySelector('.TackName')
+            const TackDate = todoAddDiv.querySelector('.TackDate')
+            const TackText = todoAddDiv.querySelector('.TackText')
+
+            TackName.textContent = ModalInputNameValue;
+            TackDate.textContent = ModalInputDateValue;
+            TackText.textContent = ModalInputMainInfoValue;
+            if (modalCheck == false) {
+                todoAddDiv.remove()
+            }
+            
+            const CloseAddedDiv = todoAddDiv.querySelector(".CloseAddedDiv")
+            CloseAddedDiv.addEventListener ('click', function() {
+                todoAddDiv.remove()
+            })
+            
+        });
 
 
 
-    // при клике удаляет сам себя
-    todoDel.addEventListener('click', function() {
-        todo.remove();
-    });
+        //логика кнопки удаления
+        const todoDelete = todoSetting.querySelector(".todoDelete") 
+        todoDelete.addEventListener('click', function() {
+            todo.remove();
+        });
+
+        //закрытие 
+        }  else {
+            const SettingList = todoSetting.querySelector('.SettingList')
+            SettingList.remove()
+            todoSettingCheck = false
+        }});
+    
 
 
     //сборка
-    todo.append(todoname, todoAdd, todoDel);
+    todo.append(todoname, todoSetting);
     todoListHolder.append(todo);
 
     //обнуление инпута
