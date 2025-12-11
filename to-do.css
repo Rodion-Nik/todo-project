@@ -4,13 +4,8 @@ html {
 
 
 }
-#todoInput {
-    display: flex;
-    justify-self: center;
 
-}
-
-.CreateMainDiv {
+/*.CreateMainDiv {
     display: flex;
     justify-content: center;
     justify-self: center;
@@ -19,7 +14,7 @@ html {
     padding: 10px;
     background-color: rgb(95, 95, 95);
     border-radius: 10px;
-}
+}*/
 
 .Background{
     position: absolute;
@@ -39,14 +34,15 @@ html {
     overflow-x: visible;
     width: auto;
     height: 90%;
-    top: 70px;
+    top: 10px;
     background-color: rgba(32, 32, 32, 0.027);
 }
 
 
-
+/*Первая колнка с текстом "добавить колонку"*/
 .createtodo {
-    border-radius: 15px;
+    user-select: none;
+    border-radius: 10px;
     width: 250px;
     background-color: rgba(139, 139, 139, 0.692);
     padding: 10px;
@@ -74,15 +70,38 @@ html {
     min-width: 250px;
     min-height: 15px;
     height: auto;
-    border-radius: 15px;
+    border-radius: 10px;
     margin: 20px;
     padding: 10px 10px 10px 10px;
 
 }
+/*настрокйки для формы после нажатия на добавить колонку*/
+.CreateColumInput {
+    display: flex;
+    width: 250px;
+    padding: 5px;
+    border-radius: 5px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: auto;
+    resize: none;
+    overflow: hidden;
+}
+.CreateColumAcept {
+    position: relative;
+    border-radius: 5px;
+    margin-top: 5px;
+    display: flex;
+    background-color: blue;
+    padding: 10px;
+    max-width: 60px;
+}
 
-/*та самая тудушка*/
+
+/*блок с надписью создать карточку*/
 
 .AddTodoCard {
+    user-select: none;
     background-color: rgb(18, 113, 221);
     height: auto;
     padding: 5px;
@@ -90,8 +109,9 @@ html {
     width: 240px;
     margin-top: 5px;
     display: flex;
+    flex-wrap: wrap;
 }
-
+/*инпут в нутри блока создат карточку + кнопка принять*/
 .formInput {
     display: flex;
     width: 250px;
@@ -102,10 +122,18 @@ html {
     height: auto;
     resize: none;
     overflow: hidden;
-
+}
+.formAcept {
+    position: relative;
+    border-radius: 5px;
+    margin-top: 5px;
+    display: flex;
+    background-color: blue;
+    padding: 10px;
+    max-width: 60px;
 }
 
-
+/*блок с именем из блока выше*/
 .todoAddedDiv {
     position: relative;
     background-color: rgb(18, 113, 221);
@@ -116,14 +144,18 @@ html {
     border-radius: 5px;
     width: 240px;
     margin-top: 5px;
-    display: flex;
+
     align-items: center;
     flex-wrap: wrap;
     word-break: break-word;
     
 }
-
-
+.AddedDivText {
+    width: 220px;
+    flex-wrap: wrap;
+    word-break: break-word;
+}
+/*триеточие*/
 .todoSetting {
     z-index: 10;
     display: flex;
@@ -136,15 +168,14 @@ html {
     top: 15px;
     left: 85%;
 
-
 }
 
 /*раположение текста*/
 
 .CloseAddedDiv {
-    position: relative;
-
-    left: 220px;
+    position: fixed;
+    user-select: none;
+    left: 270px;
 }
 
 .SettingList {
@@ -155,7 +186,10 @@ html {
 }
 
 .todoname {
+    width: 220px;
     color: aliceblue;
+    
+    word-wrap: break-word;
     
 }
 
@@ -185,12 +219,9 @@ html {
 
 
 
-
-
-
-
 /*Модальное окно*/
 .ModalInputHolder {
+    background: rgba(0, 0, 0, 0.65);
     position: fixed;
     left: 20%;
     top: 15%;
@@ -198,26 +229,71 @@ html {
 }
 
 .ModalActionsHolder {
+    font-size: 20px;
+    background-color: aqua;
     position: fixed;
-    top: 85%;
+    top: 90%;
     left: 50%;
     transform: translateX(-50%);
     width: 400px;
     display: flex;
     justify-content: space-around;
+}
 
+
+.ModalWinHeader {
+    background-color: blue;
+    position: fixed;
+    top:0px;
+    left: 0px;
+    width: 800px;
+    height: 50px;
+    border-radius: 15px 15px 0px 0px;
+}
+.ModalWinClose {
+    position: fixed;
+    left: 95%;
+    top: 12px;
+    font-size: 24px;
+    background-color: aqua;
+    border-radius: 3px;
 }
 
 .ModalWinMain {
-    justify-content: center;
-    align-items: center;
     position: absolute;
     z-index: 100;
     left: 50%;
-    top: 20%;
+    top: 5%;
     background-color: brown;
-    height: 500px;
+    height: 800px;
     width: 800px;
     transform: translate(-50%);
     border-radius: 20px;
+}
+#ModalInputName {
+    left: 15%;
+    top: 10%;
+    position: fixed;
+    width: 600px;
+    max-height: 300px;
+    resize: none;
+    overflow: hidden;
+    font-size: 24px;
+    font-weight: 900;
+}
+.ModalText{
+    position: fixed;
+    top: 53%;
+    left: 15%;
+    font-size: 18px;
+}
+#ModalInputMainInfo {
+    position: fixed;
+    top:60%;
+    left: 15%;
+    width: 600px;
+    height: 50px;
+    max-height: 200px;
+    resize: none;
+    overflow-y: hidden;
 }
