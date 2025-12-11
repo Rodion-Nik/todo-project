@@ -17,25 +17,31 @@ function ModalWin() {
     modalCheck = true
     const modal = document.createElement('div')
     modal.innerHTML = `
+    <div class="ModalInputHolder">
     <div class="ModalWinMain">
-        <div class="ModalInputHolder">
-            <header class="ModalWinHeader">
-                <div class="ModalWinClose">
-                    <span data-testid="CloseIcon" data-vc="icon-CloseIcon" aria-hidden="true" class="_1e0c1o8l _1o9zidpf _vyfuvuon _vwz4kb7n _1szv15vq _1tly15vq _rzyw1osq _17jb1osq _1ksvoz0e _3se1x1jp _re2rglyw _1veoyfq0 _1kg81r31 _jcxd1r8n _gq0g1onz _1trkwc43" style="--icon-primary-color: var(--ds-text-accent-gray-bolder, #172B4D); --icon-secondary-color: inherit;"><svg width="24" height="24" role="presentation" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12Z" fill="currentColor"></path></svg></span>
-                </div>
-            </header>
-            <section>
-                <textarea id="ModalInputName"></textarea>
-            </section>
-            <div>
-                <p class="ModalText">Описание</p> 
-                <textarea id="ModalInputMainInfo"></textarea>
-            </div>
+        <header class="ModalWinHeader">
+        <div class="ModalTitle"></div>
+        <button class="ModalWinClose" type="button">✕</button>
+        </header>
+
+        <div class="ModalBody">
+        <div class="ModalField">
+            <label class="ModalLabel" for="ModalInputName">Titel</label>
+            <textarea id="ModalInputName"></textarea>
         </div>
+
+        <div class="ModalField">
+            <label class="ModalLabel" for="ModalInputMainInfo">Beschreibung</label>
+            <textarea id="ModalInputMainInfo"></textarea>
+        </div>
+        </div>
+
         <div class="ModalActionsHolder">
-            <div id="ModalOk">Ok</div>
+        <button id="ModalOk" type="button">Speichern</button>
         </div>
+    </div>
     </div>`;
+
     document.body.append(modal);
     // объявление всех элементов
     const ModalInputName = document.querySelector('#ModalInputName')
@@ -79,7 +85,7 @@ function ModalWin() {
         ModalInputNameValue = ModalInputName.value
 
         if ( ModalInputNameValue.trim().length === 0){
-                alert("название")
+                
             } else {
                 modal.remove();
                 resolve();
@@ -100,7 +106,7 @@ function ModalWin() {
 const createtodo = document.createElement('div');
 createtodo.className="createtodo";
 
-createtodo.textContent = "+ добавить колонку";
+createtodo.textContent = "+ Liste hinzufügen";
 todoListHolder.append (createtodo);
 let createTodoColumnInputValue = ""
 // это функция заменяет "добавить колонку" на 2 дива куда нужно вписать название и после оно примется
@@ -109,8 +115,8 @@ function createTodoColumn(){
     createtodo.classList.add('editing');
     createtodo.innerHTML = `
     <div>
-        <textarea placeholder="Введите название" class="CreateColumInput"></textarea>
-        <div class="CreateColumAcept">Принять</div>
+        <textarea placeholder="Titel eingeben" class="CreateColumInput"></textarea>
+        <div class="CreateColumAcept">Bestätigen</div>
     </div>
     `
     const createTodoColumnInput =  createtodo.querySelector(".CreateColumInput")
@@ -150,7 +156,7 @@ createtodo.addEventListener('click', async function()  {
     
     //карточка "создать карточку"
     const AddTodoCard = document.createElement('div')
-    AddTodoCard.textContent = "+ создать карточку"
+    AddTodoCard.textContent = "+ Karte hinzufügen"
     AddTodoCard.className = "AddTodoCard"
 
     //имя основного блока
@@ -162,7 +168,7 @@ createtodo.addEventListener('click', async function()  {
     const form = document.createElement('div')
     form.innerHTML = `
         <div>
-            <textarea placeholder="Введите название" class="formInput"></textarea>
+            <textarea placeholder="Titel eingeben" class="formInput"></textarea>
             <div class="formAcept">Принять</div>
         </div>
         `
@@ -189,8 +195,11 @@ createtodo.addEventListener('click', async function()  {
     })
 
         //берет значения  и создает карточки
-
+        
         formAcept.addEventListener ('click', function() {
+            console.log('123');
+            if ( formInputValue.value.trim().length === 0){
+            } else {
             const todoAddDiv = document.createElement('div');
             formText = formInputValue.value
             todoAddDiv.innerHTML = `
@@ -221,7 +230,7 @@ createtodo.addEventListener('click', async function()  {
                 await ModalWin()
                 AddedDivText.textContent = ModalInputNameValue
                 AddedDivText.dataset.description = ModalInputMainInfoValue
-            })
+            })}
             });
 
         
@@ -238,7 +247,7 @@ createtodo.addEventListener('click', async function()  {
         settingList.className = "SettingList"
         settingList.innerHTML = `
         <div class="SettingHolder">
-            <div class="todoDelete">Del</div>
+            <div class="todoDelete">Karte löschen</div>
         </div>`
         todoSetting.append(settingList)
         todoSettingCheck = true

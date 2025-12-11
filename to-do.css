@@ -219,81 +219,252 @@ html {
 
 
 
-/*Модальное окно*/
+/* тёмный фон под модалкой */
 .ModalInputHolder {
+    position: fixed;
+    inset: 0;
     background: rgba(0, 0, 0, 0.65);
-    position: fixed;
-    left: 20%;
-    top: 15%;
-
-}
-
-.ModalActionsHolder {
-    font-size: 20px;
-    background-color: aqua;
-    position: fixed;
-    top: 90%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 400px;
     display: flex;
-    justify-content: space-around;
-}
-
-
-.ModalWinHeader {
-    background-color: blue;
-    position: fixed;
-    top:0px;
-    left: 0px;
-    width: 800px;
-    height: 50px;
-    border-radius: 15px 15px 0px 0px;
-}
-.ModalWinClose {
-    position: fixed;
-    left: 95%;
-    top: 12px;
-    font-size: 24px;
-    background-color: aqua;
-    border-radius: 3px;
-}
-
-.ModalWinMain {
-    position: absolute;
+    justify-content: center;
+    align-items: center;
     z-index: 100;
-    left: 50%;
-    top: 5%;
-    background-color: brown;
-    height: 800px;
-    width: 800px;
-    transform: translate(-50%);
+}
+
+/* окно */
+.ModalWinMain {
+    width: 700px;
+    max-width: 95vw;
+    max-height: 85vh;
+    background: #2f3136;              /* тёмно-серый под твой сайт */
     border-radius: 20px;
-}
-#ModalInputName {
-    left: 15%;
-    top: 10%;
-    position: fixed;
-    width: 600px;
-    max-height: 300px;
-    resize: none;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
-    font-size: 24px;
-    font-weight: 900;
+    color: #f9fafb;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
-.ModalText{
-    position: fixed;
-    top: 53%;
-    left: 15%;
+
+/* шапка */
+.ModalWinHeader {
+    background: #111827;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
     font-size: 18px;
 }
-#ModalInputMainInfo {
-    position: fixed;
-    top:60%;
-    left: 15%;
-    width: 600px;
-    height: 50px;
-    max-height: 200px;
-    resize: none;
-    overflow-y: hidden;
+
+.ModalTitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
+.ModalWinClose {
+    border: none;
+    background: transparent;
+    color: #f9fafb;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.15s;
+}
+
+.ModalWinClose:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+/* тело модалки */
+.ModalBody {
+    padding: 24px 28px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* блок поля */
+.ModalField {
+    display: flex;
+    flex-direction: column;
+}
+
+/* подписи */
+.ModalLabel {
+    font-size: 14px;
+    color: #d1d5db;
+    margin-bottom: 6px;
+}
+
+/* текстарии */
+#ModalInputName,
+#ModalInputMainInfo {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #4b5563;
+    background: #111827;
+    color: #f9fafb;
+    font-size: 16px;
+    outline: none;
+    resize: none;
+    max-height: 200px;
+}
+
+#ModalInputName:focus,
+#ModalInputMainInfo:focus {
+    border-color: #2563eb;           /* синий акцент как на карточках */
+    box-shadow: 0 0 0 1px #2563eb;
+}
+
+/* нижняя панель с кнопкой */
+.ModalActionsHolder {
+    padding: 12px 28px 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.ModalActionsHolder #ModalOk {
+    min-width: 200px;
+    padding: 10px 24px;
+    border-radius: 999px;
+    border: none;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s, background 0.1s;
+}
+
+.ModalActionsHolder #ModalOk:hover {
+    background: #1d4ed8;
+    box-shadow: 0 10px 20px rgba(37,99,235,0.4);
+    transform: translateY(-1px);
+}
+
+.ModalActionsHolder #ModalOk:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+
+/* общая анимация для всех кликалок */
+.createtodo,
+.CreateColumAcept,
+.AddTodoCard,
+.formAcept,
+.todoSetting,
+.CloseAddedDiv,
+.SettingHolder .todoDelete {
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s, transform 0.08s, box-shadow 0.15s;
+}
+
+/* ----- "+ добавить колонку" ----- */
+.createtodo:hover {
+    background-color: rgba(139, 139, 139, 0.9);
+    box-shadow: 0 4px 12px rgba(0,0,0,.35);
+}
+.createtodo:active {
+    background-color: rgba(139, 139, 139, 1);
+    transform: scale(0.97) translateY(1px);
+    box-shadow: none;
+}
+
+/* ----- кнопка "Принять" при создании колонки ----- */
+.CreateColumAcept {
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 3px 6px rgba(0,0,0,.3);
+}
+.CreateColumAcept:hover {
+    background-color: #1d4ed8;
+    box-shadow: 0 6px 16px rgba(37,99,235,.45);
+    transform: translateY(-1px);
+}
+.CreateColumAcept:active {
+    background-color: #1e40af;
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* ----- "+ создать карточку" ----- */
+.AddTodoCard {
+    color: #ffffff;
+    font-size: 14px;
+    margin-top: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,.3);
+}
+.AddTodoCard:hover {
+    background-color: rgb(24, 134, 255);
+    box-shadow: 0 6px 16px rgba(37,99,235,.45);
+    transform: translateY(-1px);
+}
+.AddTodoCard:active {
+    background-color: rgb(18, 90, 177);
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* ----- кнопка "Принять" внутри карточки ----- */
+.formAcept {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 3px 6px rgba(0,0,0,.3);
+}
+.formAcept:hover {
+    background-color: #1d4ed8;
+    box-shadow: 0 6px 16px rgba(37,99,235,.45);
+    transform: translateY(-1px);
+}
+.formAcept:active {
+    background-color: #1e40af;
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* ----- крестик у карточки ----- */
+.CloseAddedDiv {
+    padding: 0 6px;
+    border-radius: 4px;
+    background: transparent;
+    font-weight: 600;
+}
+.CloseAddedDiv:hover {
+    background: rgba(0,0,0,0.35);
+}
+.CloseAddedDiv:active {
+    background: rgba(0,0,0,0.6);
+}
+
+
+
+/* ----- пункт Del в выпадашке ----- */
+.SettingHolder .todoDelete {
+    padding: 6px 8px;
+    border-radius: 4px;
+    color: #fca5a5;
+}
+.SettingHolder .todoDelete:hover {
+    background: rgba(248,113,113,0.12);
+}
+.SettingHolder .todoDelete:active {
+    background: rgba(248,113,113,0.2);
+}
+
+/* чуть почище фокус для инпутов в формах колонок/карточек */
+.CreateColumInput:focus,
+.formInput:focus {
+    outline: none;
+    border: 1px solid #2563eb;
+    box-shadow: 0 0 0 1px #2563eb;
+}
+
