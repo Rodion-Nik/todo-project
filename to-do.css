@@ -150,6 +150,14 @@ html {
     word-break: break-word;
     
 }
+.todoAddedDiv:hover {
+    background-color: rgb(24, 134, 255);
+    box-shadow: 0 6px 16px rgba(37,99,235,.45);
+}
+.todoAddedDiv:active {
+    background-color: rgb(18, 90, 177);
+    box-shadow: none;
+}
 .AddedDivText {
     width: 220px;
     flex-wrap: wrap;
@@ -175,7 +183,7 @@ html {
 .CloseAddedDiv {
     position: fixed;
     user-select: none;
-    left: 270px;
+    left: 260px;
 }
 
 .SettingList {
@@ -352,6 +360,7 @@ html {
 
 
 /* общая анимация для всех кликалок */
+.todoAddedDiv,
 .createtodo,
 .CreateColumAcept,
 .AddTodoCard,

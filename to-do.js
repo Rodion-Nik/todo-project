@@ -134,7 +134,7 @@ function createTodoColumn(){
         createtodo.classList.remove("editing");
         createtodo.innerHTML = ``
         createtodo.className = "createtodo";
-        createtodo.textContent = "+ добавить колонку";
+        createtodo.textContent = "+ Liste hinzufügen";
         resolve(createTodoColumnInputValue);}
         
     })}) 
@@ -169,7 +169,7 @@ createtodo.addEventListener('click', async function()  {
     form.innerHTML = `
         <div>
             <textarea placeholder="Titel eingeben" class="formInput"></textarea>
-            <div class="formAcept">Принять</div>
+            <div class="formAcept">Bestätigen</div>
         </div>
         `
 
@@ -189,7 +189,7 @@ createtodo.addEventListener('click', async function()  {
         AddTodoCard.append(form)
 
         formAcept.addEventListener ('click',  function() {
-            AddTodoCard.textContent = "+ создать карточку"
+            AddTodoCard.textContent = "+ Karte hinzufügen"
             AddTodoCard.className = "AddTodoCard"
         })
     })
