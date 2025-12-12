@@ -64,8 +64,9 @@ html {
 /*Основное окошко где все лежит*/
 .todo {
     position: relative;
-
     display: flex;
+    flex-direction: column;
+    max-height: 800px; 
     background-color: rgba(65, 65, 65, 0.637);
     min-width: 250px;
     min-height: 15px;
@@ -73,6 +74,7 @@ html {
     border-radius: 10px;
     margin: 20px;
     padding: 10px 10px 10px 10px;
+    overflow: hidden; 
 
 }
 /*настрокйки для формы после нажатия на добавить колонку*/
@@ -174,16 +176,16 @@ html {
     user-select: none;
     transform: translateY(-60%);
     top: 15px;
-    left: 85%;
+    right: 8px;
 
 }
 
 /*раположение текста*/
 
 .CloseAddedDiv {
-    position: fixed;
+    position: absolute;
     user-select: none;
-    left: 260px;
+    left: 220px;
 }
 
 .SettingList {
@@ -194,11 +196,21 @@ html {
 }
 
 .todoname {
-    width: 220px;
+    flex: 1;
+    min-width: 240px;
+    
+    overflow-y: auto;       /* скролл тут */
+    overflow-x: hidden;
     color: aliceblue;
+    padding-right: auto + 10px;
     
     word-wrap: break-word;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.35) rgba(0,0,0,0.15);
     
+}
+.todoname::-webkit-scrollbar {
+    width: 10px;
 }
 
 /*Троеточие*/
