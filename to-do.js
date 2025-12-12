@@ -247,7 +247,7 @@ createtodo.addEventListener('click', async function()  {
         settingList.className = "SettingList"
         settingList.innerHTML = `
         <div class="SettingHolder">
-            <div class="todoDelete">Karte löschen</div>
+            <div class="todoDelete">Liste löschen</div>
         </div>`
         todoSetting.append(settingList)
         todoSettingCheck = true

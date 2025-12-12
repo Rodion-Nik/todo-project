@@ -65,7 +65,7 @@ html {
 .todo {
     position: relative;
     display: flex;
-    flex-direction: column;
+
     max-height: 800px; 
     background-color: rgba(65, 65, 65, 0.637);
     min-width: 250px;
@@ -74,7 +74,7 @@ html {
     border-radius: 10px;
     margin: 20px;
     padding: 10px 10px 10px 10px;
-    overflow: hidden; 
+  
 
 }
 /*настрокйки для формы после нажатия на добавить колонку*/
@@ -197,14 +197,17 @@ html {
 
 .todoname {
     flex: 1;
-    min-width: 240px;
+
+    max-width: 220px;
+    padding-right: 30px;
     
     overflow-y: auto;       /* скролл тут */
     overflow-x: hidden;
     color: aliceblue;
-    padding-right: auto + 10px;
+    padding-right: auto;
     
-    word-wrap: break-word;
+    flex-wrap: wrap;
+    word-break: break-word;
     scrollbar-width: thin;
     scrollbar-color: rgba(255,255,255,0.35) rgba(0,0,0,0.15);
     
